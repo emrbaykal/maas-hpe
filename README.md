@@ -13,7 +13,12 @@ The following system requirements are needed in order for the written codes to w
  - Maas Server (Regian & Rack Controller)
    - You can find detailed information about Maas server setup from the link below.
       - [How to install MAAS](https://maas.io/docs/how-to-install-maas)
-
+ - Ansible Core
+   - You can find detailed information installing ansible core from the link below. You can install ansible where located on Maas servers operating system.
+      - [Installing Ansible on Ubuntu](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
+      
+ -  You can download the github repository to the server with ansible installed with the following command.
+    - # git clone git@github.com:emrbaykal/maas-hpe.git
  Role Variables
  --------------
 
