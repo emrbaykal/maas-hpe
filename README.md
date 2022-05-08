@@ -19,6 +19,8 @@ The following system requirements are needed in order for the written codes to w
       
  -  You can download the github repository to the server with ansible installed with the following command.
     - git clone git@github.com:emrbaykal/maas-hpe.git
+ 
+ 
  Role Variables
  --------------
 
