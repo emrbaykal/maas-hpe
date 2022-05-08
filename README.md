@@ -30,6 +30,14 @@ The following system requirements are needed in order for the written codes to w
  Take In Action
 ---------------
 
+- Before working, infrastructure-specific variables must be filled under the group_vars file.
+  - group_vars/all.yml 
+
+   ### FQDN
+   The following variable define fully-qualified domain
+   ```yaml
+   fqdn: test.local
+   ```
 Task & Roles
 ------------
 
@@ -51,7 +59,8 @@ Task & Roles
 - Login to MAAS Server via using Maas CLI
 - Checking whether the server is registered to maas.
 - If the server is registered to maas, the status of the server is checked.
-- If the server is registered to maas and its state is Deployed, main plays will not be run for that server.
+- If the server is registered to maas and its state is Deployed, 
+  main plays will not be run for that server.
 
  ```
 
@@ -126,7 +135,7 @@ Task & Roles
   - 10-create-tmp-logical-volume.yml
 ```
 
-  - Vmware Host Vcenter Registration. {{ role::maas-deploy-machine }}
+  - Vmware Host Vcenter Registration. {{ maas-add-esxi-vcenter }}
     - If the target server is desired to be set up as vmware host, after the operating system installation, 
       the registration process is performed in the Vmware Virtual Center.
 
@@ -134,8 +143,11 @@ Task & Roles
 - Add ESXi Host to vCenter.
   - 01-add-host-to-vcenter.yml
 
-
 ```
+- Post Tasks 
+   - Post is a conditional execution block that runs after running main plays. 
 
+```yaml
+- Logout to MAAS Server via using Maas CLI
 
  
