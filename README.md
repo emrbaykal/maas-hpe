@@ -33,7 +33,7 @@ The following system requirements are needed in order for the written codes to w
 - Before working, infrastructure-specific variables must be filled under the group_vars file.
   - group_vars/all.yml 
 
-   ### FQDN
+   ## FQDN
    The following variable define fully-qualified domain
    ```yaml
    fqdn: test.local
