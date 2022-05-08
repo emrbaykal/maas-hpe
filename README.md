@@ -12,7 +12,7 @@ The following system requirements are needed in order for the written codes to w
 
  - Maas Server (Regian & Rack Controller)
    - You can find detailed information about Maas server setup from the link below.
-      [How to install MAAS](https://maas.io/docs/how-to-install-maas)
+      - [How to install MAAS](https://maas.io/docs/how-to-install-maas)
 
  Role Variables
  --------------
