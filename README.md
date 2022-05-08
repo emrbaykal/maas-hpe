@@ -2,9 +2,9 @@ Installing the operating system on HPE Proliant Servers with MAAS
 =====================
 
 ![Visits Badge](https://badges.pufler.dev/visits/emrbaykal/maas-hpe)
-![GitHub last commit](https://img.shields.io/github/last-commit/semrbaykal/maas-hpe)
+![GitHub last commit](https://img.shields.io/github/last-commit/emrbaykal/maas-hpe)
 [![GitHub license](https://img.shields.io/github/license/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/blob/master/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/semrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/network)
 [![GitHub issues](https://img.shields.io/github/issues/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/issues)
 
