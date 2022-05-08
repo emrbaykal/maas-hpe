@@ -1,0 +1,21 @@
+---
+
+    - name: Create Swap Logical Volumes
+      command: "maas admin volume-group create-logical-volume {{ host_system_id }} {{ lvm_volume_group_id }} name=lv_swap size={{ swap_partition_size }}G"
+      changed_when: false
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      register: swap_logical_volume
+
+    - set_fact:
+        swap_logical_volume_id: "{{ swap_logical_volume.stdout|from_json|json_query('id') }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+
+    - name: Format SWAP Filesystem
+      command: "maas admin block-device format {{ host_system_id }} {{ swap_logical_volume_id  }} fstype={{ swap_partition_format }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      changed_when: false
+
+    - name: Mount Swap Filesystem
+      command: "maas admin block-device mount {{ host_system_id }} {{ swap_logical_volume_id }} mount_point={{ swap_partition_format }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      changed_when: false

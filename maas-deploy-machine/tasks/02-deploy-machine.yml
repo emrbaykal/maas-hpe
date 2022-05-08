@@ -1,0 +1,31 @@
+---
+
+  #  - name: Deploy  Machine
+  #    command: "maas admin machine deploy {{ host_system_id }} distro_series={{ distro_version }} user_data=$(base64 -w0 root-access.sh)"
+  #    changed_when: false
+
+    - name: Deploy  RHEL Machine
+      shell: "maas admin machine deploy {{ host_system_id }} distro_series={{ distro_version }} user_data=$(base64 -w0 root-access.sh)"
+      when: 
+        - machine_exists|bool == true 
+        - machine_state  == "Ready" 
+        - distro == "rhel"
+      changed_when: false
+
+    - name: Deploy  VMware Machine
+      shell: "maas admin machine deploy {{ host_system_id }} distro_series={{ distro_version }}"
+      when: 
+        - machine_exists|bool == true 
+        - machine_state  == "Ready" 
+        - distro == "vmware"
+      changed_when: false
+    
+    - name: Wait for Deploy Machine to complete
+      action: command maas admin machines read hostname={{ inventory_hostname }}
+      register: deployresult
+      until: deployresult.stdout|from_json|json_query(query) == "Deployed"
+      retries: 60
+      delay: 10
+      vars:
+       query: "[0].status_name"
+      when: machine_exists|bool == true 

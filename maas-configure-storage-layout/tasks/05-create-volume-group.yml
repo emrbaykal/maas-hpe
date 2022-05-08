@@ -1,0 +1,21 @@
+---
+
+    - name: Create LVM Partition
+      command: "maas {{maas_user}} partitions create {{ host_system_id }} {{ block_device_id[0] }}"
+      changed_when: false
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      register: lvm_partition
+
+    - set_fact:
+        lvm_partition_id: "{{ lvm_partition.stdout|from_json|json_query('id') }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+
+    - name: Create LVM Volume Group
+      command: "maas admin volume-groups create {{ host_system_id }} name=vg_root partitions={{ lvm_partition_id }}"
+      changed_when: false
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      register: lvm_volume_group
+
+    - set_fact:
+        lvm_volume_group_id: "{{ lvm_volume_group.stdout|from_json|json_query('id') }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"

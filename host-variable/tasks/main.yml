@@ -1,0 +1,12 @@
+---
+# tasks file for host-variable
+
+  - import_tasks: 01-host-var.yml
+    tags:
+      - role::host-variable
+      - role::host-variable::host-var
+
+  - import_tasks: 02-hosts.yml
+    tags:
+      - role::host-variable
+      - role::host-variable::hosts

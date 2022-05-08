@@ -1,0 +1,110 @@
+# Configure Server Logical Drives
+
+- name: Exterminate Create Logical Drive
+  pause:
+    prompt: Please confirm you want to exterminate Raid Config! Press return to continue. Press Ctrl+c and then "a" to abort
+
+- name: Get Physical Drives
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/smartstorageconfig"
+    method: GET
+    return_content: yes
+    body: ""
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+  register: status
+
+
+- set_fact:
+    OS_Data_Drives: "{{ status.json.PhysicalDrives | map(attribute='Location') | list  }}"
+
+- debug:
+    msg:
+     - "OS Logical Drive Have: {{ OS_Data_Drives }}"
+
+- name: Create Logical Drive Implemantation Json File
+  template:
+    src: files/array.json.j2
+    dest: "./{{ inventory_hostname }}-array.json"
+  delegate_to: localhost
+
+- name: ILO REST Logical Drive Creation
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/SmartStorageConfig/Settings/"
+    method: PUT
+    return_content: yes
+    body: "{{ lookup('file','./{{ inventory_hostname }}-array.json') }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  register: logicaldrivestat
+  delegate_to: localhost
+
+- name: ILO REST POST Rebbot Server
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset"
+    method: POST
+    return_content: yes
+    body: "{\"ResetType\": \"ForceRestart\"}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  register: rebootstat
+  delegate_to: localhost
+
+- debug:
+    var=rebootstat.json.error
+
+- name: Delete Logical Drive Implemantation Json File
+  file:
+    path: "./{{ inventory_hostname }}-array.json"
+    state: absent
+  delegate_to: localhost
+
+- name: Wait for Server Power State InPostDiscoveryComplete
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/systems/1"
+    method: GET
+    return_content: yes
+    body: ""
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+  register: poststate
+  until: poststate.json.Oem.Hpe.PostState == "InPostDiscoveryComplete"
+  retries: 20
+  delay: 15
+
+- name: Get Logical Drive Status
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/smartstorageconfig"
+    method: GET
+    return_content: yes
+    body: ""
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+  register: logicaldrivestatus
+
+- name: Logical Drive Status
+  debug:
+    var: logicaldrivestatus.json.LogicalDrives

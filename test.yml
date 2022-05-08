@@ -1,0 +1,54 @@
+---
+- hosts: localhost
+  gather_facts: no
+
+  tasks:
+    
+    - name: Get Server Power Status
+      uri:
+        url: "https://10.254.254.2/redfish/v1/systems/1"
+        method: GET
+        return_content: yes
+        body: ""
+        body_format: json
+        validate_certs: no
+        user: hpeadmin
+        password: admin123
+        force_basic_auth: yes
+        status_code: 200
+      delegate_to: localhost
+      register: status
+
+    - debug:
+        msg: "{{ status }}"
+
+    - set_fact:
+        powerstate: "{{ status.json.Oem.Hpe.PostState }}"
+
+    - debug:
+        msg: "{{ powerstate }}"
+
+    - name: Wait for Server Power State InPostDiscoveryComplete
+      uri:
+        url: "https://10.254.254.2/redfish/v1/systems/1"
+        method: GET
+        return_content: yes
+        body: ""
+        body_format: json
+        validate_certs: no
+        user: hpeadmin
+        password: admin123
+        force_basic_auth: yes
+        status_code: 200
+      delegate_to: localhost
+      register: poststate
+      until: poststate.json.Oem.Hpe.PostState == "InPostDiscoveryComplete"
+      retries: 20
+      delay: 15
+
+
+
+
+
+
+

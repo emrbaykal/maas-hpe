@@ -1,0 +1,32 @@
+---
+ 
+ - read_csv:
+     path: host-vms-csv/hosts.csv
+     key: hostname
+   register: vms
+
+ - name: Ensure hosts files exists & Free
+   copy:
+    content: |
+              # This file was created by Ansible
+              [maas]
+              {{ maas_cli_srv }} ansible_host={{ maas_cli_srv_ip }}
+
+              [guest]
+
+    dest: hosts
+
+
+ - name: Create Ansible Hosts File
+   lineinfile:
+     dest: hosts
+     firstmatch: yes
+     insertafter: '^\[ttguest\]'
+     regexp: "{{ item.value.hostname }} ansible_host=*"
+     line: "{{ item.value.hostname }} ansible_host={{ item.value.public_net_interface_ip }}"
+   loop: "{{ vms.dict|dict2items }}"
+
+ 
+ - meta: refresh_inventory
+
+  

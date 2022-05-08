@@ -1,0 +1,51 @@
+---
+  #### Guest Based Variables ####
+  
+  # Destination Server Network Config
+  dep_int_mac_address : XX:XX:XX:XX:XX:XX
+  # Domain
+  domain: test.local
+  # Zone
+  zone: TEST-LAB
+  # Public Network Subnet:
+  subnet: 00.00.00.0/24
+  # Public Network IP Address
+  pub_net_ip: 00.00.00.00
+  # Public Network MAC Address
+  pub_net_mac_address: XX:XX:XX:XX:XX:XX
+
+  ## Destination Server Storage Config (Size GB)
+  boot_partition_size: 1
+  boot_partition_format: fat32
+  swap_partition_size: 4
+  swap_partition_format: swap
+  root_partition_size: 24
+  root_partition_format: xfs
+  var_partition_size: 8
+  var_partition_format: xfs
+  home_partition_size: 8
+  home_partition_format: xfs
+  tmp_partition_size: 8
+  tmp_partition_format: xfs
+
+  ## Deployed OS Version
+  distro: rhel
+  distro_version: 8.5
+
+  ## Motherboard Firmware
+  motherboard_firmware: efi
+
+  ## Server State
+  server_state: physical
+
+  ## HPE ILO Information
+  ilo_address: 00.00.00.00
+  ilo_username: admin
+  ilo_password: xxxxx
+
+  # OS Data Logical Drive
+  OS_LogicalDriveName: OS
+  OS_Raid: Raid1
+  #Set to -1 to use all remaining space for maximum size
+  OS_CapacityGiB: 120
+
