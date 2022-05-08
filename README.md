@@ -73,6 +73,19 @@ Task & Roles
 
 ```
 
+  - Network configuration of target server. {{ maas-configure-physical-server }}
+    - Network configuration is done in line with the information filled in the csv file of the target server.
+
+```yaml
+- Checking whether the server is registered to maas.
+- If the server is registered to maas, the status of the server is checked.
+  - 01-query-machine-id-net.yml
+- The settings of the public network interface are made.  
+  - 02-conf-public-insterface.yml
+
+
+```
+
  Take In Action
  -----------
 
