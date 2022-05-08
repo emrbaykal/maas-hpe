@@ -83,9 +83,34 @@ Task & Roles
 - The settings of the public network interface are made.  
   - 02-conf-public-insterface.yml
 
-
 ```
 
+- Storage configuration of target server. {{ maas-configure-storage-layout }}
+    - Storage configuration is done in line with the information filled in the csv file of the target server.
+
+```yaml
+- Checking whether the server is registered to maas.
+- If the server is registered to maas, the status of the server is checked.
+  - 01-query-machine-storage.yml
+- Clean current storage layout
+  - 02-clean-storage-layout.yml
+- If the target server is desired to be set up as vmware host, to create vmfs storage layout.
+  - 03-set-vmfs-storage-layout.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate boot partition.
+  - 04-create-boot-partition.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate LVM Layout 
+  - 05-create-volume-group.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate SWAP Partition
+  - 06-create-swap-logical-volume.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate / Partition
+  - 07-create-root-logical-volume.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate /var Partition
+  - 08-create-var-logical-volume.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate /home Partition
+  - 09-create-home-logical-volume.yml
+- If the target server is desired to be set up as Redhat Linux OS, to crate /tmp Partition
+  - 10-create-tmp-logical-volume.yml
+```
  Take In Action
  -----------
 
