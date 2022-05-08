@@ -1,6 +1,13 @@
 Installing the operating system on HPE Proliant Servers with MAAS
 =====================
 
+![Visits Badge](https://badges.pufler.dev/visits/emrbaykal/maas-hpe)
+![GitHub last commit](https://img.shields.io/github/last-commit/semrbaykal/maas-hpe)
+[![GitHub license](https://img.shields.io/github/license/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/semrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/network)
+[![GitHub issues](https://img.shields.io/github/issues/emrbaykal/maas-hpe)](https://github.com/emrbaykal/maas-hpe/issues)
+
 The purpose of this project is to automatically install the desired operating system on HPE Proliant servers using ansible and maas software, without human intervention.
 
 Canonical Maas software was used for operating system installation in the project. Ansible software was used to run the installation processes in a specific order and to make the necessary settings on the HPE Server and MAAS software for the operating system installation.
