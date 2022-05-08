@@ -26,13 +26,13 @@ Task & Roles
 
 HPE Proliant Server Preconfigure Role Tasks {{ role: host-variable }}
    - Using this role, the host variables are created by reading the data on the csv file created by the user.
+
 ```yaml
-- Check Proliant Server power state, powered on server if needed
-  - 01-power-state.yml
-- Configure Raid Controller
-  - 02-logical-drives.yml
-- Configure Bios Settings
-  - 03-bios-settings.yml
+- Create host variable file
+  - 01-host-var.yml
+- Convigure ansible hosts file 
+  - 02-hosts.yml
+
 
  ```
  Take In Action
