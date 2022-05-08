@@ -18,7 +18,7 @@ The following system requirements are needed in order for the written codes to w
       - [Installing Ansible on Ubuntu](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
       
  -  You can download the github repository to the server with ansible installed with the following command.
-    - # git clone git@github.com:emrbaykal/maas-hpe.git
+    - git clone git@github.com:emrbaykal/maas-hpe.git
  Role Variables
  --------------
 
