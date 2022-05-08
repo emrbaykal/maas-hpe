@@ -10,7 +10,7 @@ Requirements
 
 The following system requirements are needed in order for the written codes to work properly.
 
- - Maas Server (Regian & Rack Controller)
+ - Maas Server (Region & Rack Controller)
    - You can find detailed information about Maas server setup from the link below.
       - [How to install MAAS](https://maas.io/docs/how-to-install-maas)
  - Ansible Core
