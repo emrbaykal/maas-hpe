@@ -60,6 +60,19 @@ Task & Roles
 
 ```
 
+  - Tasks used to register target servers to the maas server {{ maas-add-device }}
+    - It registers the target server to the maas server, then the commissioning process is started.
+
+```yaml
+- If the target server is a virtual server running in vmware environment, connect to Vmware Vcenter and  UUID information of the related virtual server is pulled.
+  - 01-query-vm.yml
+- If the target server is a virtual server running in vmware environment, it is registered to the maas server together with the UUID information obtained in the previous task.  After the registration process, the commissioning state is started automatically.  
+  - 02-add-virtual-device.yml
+- if target server is HPE Proliant Server, it is registered to the maas server together with the server ILO informations.  After the registration process, the commissioning state is started automatically.
+  - 03-add-physical-device.yml
+
+```
+
  Take In Action
  -----------
 
