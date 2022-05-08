@@ -27,6 +27,8 @@ The following system requirements are needed in order for the written codes to w
  -  You can download the github repository to the server with ansible installed with the following command.
     - git clone git@github.com:emrbaykal/maas-hpe.git
  
+ Take In Action
+---------------
 
 Task & Roles
 ------------
@@ -71,11 +73,15 @@ Task & Roles
     - It registers the target server to the maas server, then the commissioning process is started.
 
 ```yaml
-- If the target server is a virtual server running in vmware environment, connect to Vmware Vcenter and  UUID information of the related virtual server is pulled.
+- If the target server is a virtual server running in vmware environment, 
+  connect to Vmware Vcenter and  UUID information of the related virtual server is pulled.
   - 01-query-vm.yml
-- If the target server is a virtual server running in vmware environment, it is registered to the maas server together with the UUID information obtained in the previous task.  After the registration process, the commissioning state is started automatically.  
+- If the target server is a virtual server running in vmware environment, 
+  it is registered to the maas server together with the UUID information obtained in the previous task.  
+  After the registration process, the commissioning state is started automatically.  
   - 02-add-virtual-device.yml
-- if target server is HPE Proliant Server, it is registered to the maas server together with the server ILO informations.  After the registration process, the commissioning state is started automatically.
+- if target server is HPE Proliant Server, it is registered to the maas server together with the server ILO informations.
+  After the registration process, the commissioning state is started automatically.
   - 03-add-physical-device.yml
 
 ```
@@ -92,8 +98,9 @@ Task & Roles
 
 ```
 
-- Storage configuration of target server. {{ maas-configure-storage-layout }}
+  - Storage configuration of target server. {{ maas-configure-storage-layout }}
     - Storage configuration is done in line with the information filled in the csv file of the target server.
+   
 
 ```yaml
 - Checking whether the server is registered to maas.
@@ -118,7 +125,17 @@ Task & Roles
 - If the target server is desired to be set up as Redhat Linux OS, to crate /tmp Partition
   - 10-create-tmp-logical-volume.yml
 ```
- Take In Action
- -----------
+
+  - Vmware Host Vcenter Registration. {{ role::maas-deploy-machine }}
+    - If the target server is desired to be set up as vmware host, after the operating system installation, 
+      the registration process is performed in the Vmware Virtual Center.
+
+```yaml
+- Add ESXi Host to vCenter.
+  - 01-add-host-to-vcenter.yml
+
+
+```
+
 
  
