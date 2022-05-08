@@ -24,7 +24,7 @@ The following system requirements are needed in order for the written codes to w
 Task & Roles
 ------------
 
-HPE Proliant Server Preconfigure Role Tasks {{ role: host-variable }}
+- HPE Proliant Server Preconfigure Role Tasks {{ role: host-variable }}
    - Using this role, the host variables are created by reading the data on the csv file created by the user.
 
 ```yaml
