@@ -33,6 +33,8 @@ Task & Roles
 - Convigure ansible hosts file 
   - 02-hosts.yml
 
+```
+
 - Pre Tasks 
    - Pretask is a conditional execution block that runs before running main the plays. These tasks do some prerequisite checks and validations.
 
