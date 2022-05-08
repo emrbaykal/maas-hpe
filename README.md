@@ -15,14 +15,28 @@ The following system requirements are needed in order for the written codes to w
       - [How to install MAAS](https://maas.io/docs/how-to-install-maas)
  - Ansible Core
    - You can find detailed information installing ansible core from the link below. You can install ansible where located on Maas servers operating system.
-      - [Installing Ansible on Ubuntu](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)
-      
+      - [Installing Ansible on Ubuntu](https://docs.ansible.com/ansible/2.9/installation_guide/intro_installation.html#installing-ansible-on-ubuntu) 
+ - HPE Proliant Servers Gen10 & Gen10+ 
  -  You can download the github repository to the server with ansible installed with the following command.
     - git clone git@github.com:emrbaykal/maas-hpe.git
  
+
+Task & Roles
+------------
+
+HPE Proliant Server Preconfigure Role Tasks {{ role: host-variable }}
+   - By using this role, the host variables are created by reading the data on the csv file created by the user.
+```yaml
+- Check Proliant Server power state, powered on server if needed
+  - 01-power-state.yml
+- Configure Raid Controller
+  - 02-logical-drives.yml
+- Configure Bios Settings
+  - 03-bios-settings.yml
+ Take In Action
+ -----------
  
- Role Variables
- --------------
+
 
  ### FQDN
 The following variable define fully-qualified domain
@@ -221,56 +235,6 @@ replication_type: async
 # Hana Key Exchange Temporary Storage ( logreplay )
 sap_hana_hsr_keyexchange_tmp: /home/emre/Documents/Office/git/ansible-sap-hana-deploy/hsr_keyexchange_tmp
 
-```
-
-### Deployment Roles
-HPE Proliant Server Preconfigure Role Tasks {{ role: proliant-server-preconfigure }}
-```yaml
-- Check Proliant Server power state, powered on server if needed
-  - 01-power-state.yml
-- Configure Raid Controller
-  - 02-logical-drives.yml
-- Configure Bios Settings
-  - 03-bios-settings.yml
-```
-Operating System Preconfigure Role Tasks { role: sap-hana-preconfigure }}
-```yaml
-- Configure Hostname
-  - 01-configure-hostname.yml
-- Configure Login Messages
-  - 02-configure-issue.yml
-- Configure Network Time Protocol
-  - 03-configure-network-time-and-date.yml
-- Configure OS Disk Snapshot Policies
-  - 04-tune-snapshot-parameters.yml
-- Register Operating System to the SUSE Customer Center
-  - 05-register-suse.yml
-- Update Operating System
-  - 06-update-operating-system.yml
-- Configure Logical Volumes and Mount Points
-  - 07-sap-hana-filesystem.yml
-- Apply Sap Hana Tuning Parameters
-  - 08-configuring-system-parameters.yml
-```
-Deploy Sap Hana Services { role: sap-hana-deploy }
-```yaml
-- Pre installation Process
-  - 01-preparing-installation.yml
-- SAP Hana Installation & Configuration
-  - 02-hana-installation.yml
-- Sap Hana Host Agent Installation
-  - 03-host-agent-installation.yml
-```
-Maintain Sap Hana System Replication { role: sap-hana-replication }
-```yaml
-- Prepare Master Server
-  - 01-preparing-master-server.yml
-- Prepare Slave Server
-  - 02-preparing-slave-server.yml
-- Perform System Replication
-  - 03-perform-system-replication.yml
-- Check System Replication Status
-  - 04-system-replication-status.yml
 ```
 
 
