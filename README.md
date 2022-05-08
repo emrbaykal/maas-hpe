@@ -36,7 +36,7 @@ Task & Roles
 ```
 
 - Pre Tasks 
-   - Pretask is a conditional execution block that runs before running main the plays. These tasks do some prerequisite checks and validations.
+   - Pretask is a conditional execution block that runs before running main plays. These tasks do some prerequisite checks and validations.
 
 ```yaml
 - Login to MAAS Server via using Maas CLI
@@ -45,6 +45,21 @@ Task & Roles
 - If the server is registered to maas and its state is Deployed, main plays will not be run for that server.
 
  ```
+
+- Main Role Tasks:
+  - HPE Proliant Server Preconfigure Role Tasks {{ maas-configure-physical-server }}
+    - If the target server is HPE proliant Gen10 server, the following tasks are run before the operating system installation.
+
+```yaml
+- Check Proliant Server power state, powered on server if needed.
+  - 01-power-state.yml
+- Disk raid configuration is made to the server in the desired config.  
+  - 02-logical-drives.yml
+- Bios settings are made according to the application to be installed on the server.
+  - 03-bios-settings.yml
+
+```
+
  Take In Action
  -----------
 
