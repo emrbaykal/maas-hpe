@@ -24,7 +24,7 @@ The following system requirements are needed in order for the written codes to w
 Task & Roles
 ------------
 
-- HPE Proliant Server Preconfigure Role Tasks {{ role: host-variable }}
+- Host Variable Role Tasks {{ role: host-variable }}
    - Using this role, the host variables are created by reading the data on the csv file created by the user.
 
 ```yaml
@@ -33,6 +33,14 @@ Task & Roles
 - Convigure ansible hosts file 
   - 02-hosts.yml
 
+- Pre Tasks 
+   - Pretask is a conditional execution block that runs before running main the plays. These tasks do some prerequisite checks and validations.
+
+```yaml
+- Login to MAAS Server via using Maas CLI
+- Checking whether the server is registered to maas.
+- If the server is registered to maas, the status of the server is checked.
+- If the server is registered to maas and its state is Deployed, main plays will not be run for that server.
 
  ```
  Take In Action
