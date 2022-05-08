@@ -33,9 +33,9 @@ HPE Proliant Server Preconfigure Role Tasks {{ role: host-variable }}
   - 02-logical-drives.yml
 - Configure Bios Settings
   - 03-bios-settings.yml
+
+ ```
  Take In Action
  -----------
- ```
-
 
  
