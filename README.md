@@ -152,7 +152,7 @@ The following system requirements are needed in order for the written codes to w
       - The jobs summarized below are executed, also the following steps can be run independently using tags:
 
          1- The host variables are created by reading the data on the csv file created by the user.
-            - if this task is to be run independently
+             - if this task is to be run independently
           
          2- Login to MAAS Server via using Maas CLI.
          3- Checking whether the server is registered to maas.
