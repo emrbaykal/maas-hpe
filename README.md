@@ -30,14 +30,51 @@ The following system requirements are needed in order for the written codes to w
  Take In Action
 ---------------
 
-- Before working, infrastructure-specific variables must be filled under the group_vars file.
+- Before start working, infrastructure-specific variables must be filled under the group_vars file.
   - group_vars/all.yml 
 
-   ## FQDN
-   The following variable define fully-qualified domain
+   ## MAAS CLI Connection Parameters
+   The following variable define Connection protocol, username and password information that ansible will use to access the server where maas cli is installed.
    ```yaml
-   fqdn: test.local
+   ansible_connection: ssh
+   ansible_user: hpe
+   ansible_ssh_pass: xxxxxx
    ```
+   ## MAAS Server API & MAAS CLI Connection Parameters
+   The following variable define maas cli ip address & maas server api url, username and api key information that ansible will use to access the server where maas rack controller and cli is installed.
+   ```yaml
+   # maas user
+   maas_user: admin
+   # maas api url
+   maas_url: http://00:00:00:00:5240/MAAS
+   # maas API Key
+   maas_apikey: admin-api-key-sample
+   # maas cli delegation server
+   maas_cli_srv: maas-cli-server
+   maas_cli_srv_ip: 00:00:00:00
+   ```
+  ## VMware Virtual Center Connection Parameters
+   If there is vmware vcenter in your environment and virtual host deployment will be made on vmware, 
+   the following VMware virtual center connection information must be filled.
+   The following variable define VMware vcenter hostname, username , password and datacenter name informations.
+   ```yaml
+   # Vmware Virtual Center Info
+   vcenter_hostname: 00:00:00:00
+   vcenter_username: administrator@vsphere.local
+   vcenter_password: xxxxxxx
+   datacenter_name: VMware-Datacenter
+   ```
+  
+  ## VMware Host Connection Parameters
+   If there is vmware vcenter in your environment and virtual host deployment will be made on vmware, 
+   the following esxi host whose deployment is planned host connection information must be filled.
+   The following variable esxi username , password  informations.
+   ```yaml
+   # Planing to Deploy ESXI Host username & password Informations
+   esxi_username: root
+   esxi_password: xxxxx
+   ```
+
 Task & Roles
 ------------
 
