@@ -149,7 +149,9 @@ The following system requirements are needed in order for the written codes to w
        anssible-playbook site.yml
        ```
        
-      - The jobs summarized below are executed.
+      - The jobs summarized below are executed:
+
+         1- The host variables are created by reading the data on the csv file created by the user.
 
 
 
