@@ -30,8 +30,8 @@ The following system requirements are needed in order for the written codes to w
  Take In Action
 ---------------
 
-- Before start working, infrastructure-specific variables must be filled under the group_vars file.
-  - group_vars/all.yml 
+- Before start working, infrastructure-specific and host-spesific variables must be filled under the group_vars file.
+  - Infrastructure-Spesific Variables -- group_vars/all.yml 
 
    ## MAAS CLI Connection Parameters
    The following variable define Connection protocol, username and password information that ansible will use to access the server where maas cli is installed.
@@ -64,7 +64,6 @@ The following system requirements are needed in order for the written codes to w
    vcenter_password: xxxxxxx
    datacenter_name: VMware-Datacenter
    ```
-  
   ## VMware Host Connection Parameters
    If there is vmware vcenter in your environment and virtual host deployment will be made on vmware, 
    the following esxi host whose deployment is planned host connection information must be filled.
@@ -88,6 +87,8 @@ Task & Roles
   - 02-hosts.yml
 
 ```
+   - Infrastructure-Spesific Variables -- group_vars/all.yml
+
 
 - Pre Tasks 
    - Pretask is a conditional execution block that runs before running main plays. These tasks do some prerequisite checks and validations.
