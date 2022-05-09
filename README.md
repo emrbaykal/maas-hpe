@@ -83,7 +83,7 @@ The following system requirements are needed in order for the written codes to w
 
      - The fields in the csv file should be filled in the following format.
 
-        ## Target Server  Informations
+        ## Target Server  Host Spesific Variables
         ```yaml
         hostname: Target Server hostname.
         server_state: If the target server is virtual, the "virtual" parameter should be entered, 
