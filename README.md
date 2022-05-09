@@ -310,4 +310,14 @@ Task & Roles
 ```yaml
 - Logout to MAAS Server via using Maas CLI
 
- 
+License
+-------
+
+Apache License 2.0, check LICENSE file for more information
+
+Author Information
+------------------
+
+WARNING: Despite the modules are used by the Author regularly they are tested only manually
+
+To get in touch with author you can use email emrebaykal@gmail.com or create a issue on github when requesting some feature.
