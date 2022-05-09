@@ -73,6 +73,9 @@ The following system requirements are needed in order for the written codes to w
    esxi_username: root
    esxi_password: xxxxx
    ```
+   
+  - Infrastructure-Spesific Variables -- group_vars/all.yml
+
 
 Task & Roles
 ------------
@@ -87,7 +90,7 @@ Task & Roles
   - 02-hosts.yml
 
 ```
-   - Infrastructure-Spesific Variables -- group_vars/all.yml
+   
 
 
 - Pre Tasks 
