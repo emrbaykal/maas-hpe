@@ -264,7 +264,7 @@ Task & Roles
   - 10-create-tmp-logical-volume.yml
 ```
 
-   - Operating system deployment perform to the target server. {{ maas-add-esxi-vcenter }}
+   - Operating system deployment perform to the target server. {{ maas-deploy-machine }}
      - The installation is started according to the operating system version desired to be installed on the target server.
 
 ```yaml
