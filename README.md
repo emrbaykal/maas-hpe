@@ -155,15 +155,13 @@ The following system requirements are needed in order for the written codes to w
       - Login to MAAS Server via using Maas CLI.
       - Checking whether the server is registered to maas.
              - If the server is registered to maas, the status of the server is checked.
-             - If the server is registered to maas and its state is Deployed
-               main plays will not be run for that server.
-         4- If the target server is HPE proliant Gen10 server, necessary configurations for bios and local disks are made.
-         5- Ansible registers the target server to the maas server, then the commissioning process is started.
-         6- Network configuration is done  with the information filled in the csv file of the target server.
-         7- Storage configuration is done with the information filled in the csv file of the target server.
-         8- Operating system deployment perform to the target server.
-         9- If the target server is desired to be set up as vmware host, after the operating system installation, 
-            the registration process is performed in the Vmware Virtual Center.
+             - If the server is registered to maas and its state is Deployed main plays will not be run for that server.
+      - If the target server is HPE proliant Gen10 server, necessary configurations for bios and local disks are made.
+      - Ansible registers the target server to the maas server, then the commissioning process is started.
+      - Network configuration is done  with the information filled in the csv file of the target server.
+      - Storage configuration is done with the information filled in the csv file of the target server.
+      - Operating system deployment perform to the target server.
+      - If the target server is desired to be set up as vmware host, after the operating system installation, the registration process is performed in the Vmware Virtual Center.
 
 
 Task & Roles
