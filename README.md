@@ -31,7 +31,7 @@ The following system requirements are needed in order for the written codes to w
 ---------------
 
 - Before start working, infrastructure-specific and host-spesific variables must be filled under the group_vars file.
-  - Infrastructure-Spesific Variables -- group_vars/all.yml 
+   ## - Infrastructure-Spesific Variables -- group_vars/all.yml 
 
    ## MAAS CLI Connection Parameters
    The following variable define Connection protocol, username and password information that ansible will use to access the server where maas cli is installed.
@@ -73,8 +73,9 @@ The following system requirements are needed in order for the written codes to w
    esxi_username: root
    esxi_password: xxxxx
    ```
-   
-  - Infrastructure-Spesific Variables -- group_vars/all.yml
+
+  - Host-Spesific Variables -- host-vms-csv/hosts.csv
+    - 
 
 
 Task & Roles
