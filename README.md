@@ -87,10 +87,10 @@ The following system requirements are needed in order for the written codes to w
         If there is vmware vcenter in your environment and virtual host deployment will be made on vmware, 
         the following esxi host whose deployment is planned host connection information must be filled.
         The following variable esxi username , password  informations.
-        
+
+        ## Target Server connection Informations
         ```yaml
-        # Target Server connection Informations
-        hostname: hostname
+        hostname: Target Serfver hostname.
         server_state: If the target server is virtual, the "virtual" parameter should be entered, 
                       If the target server is physical, the "physical" parameter should be entered. 
         ilo_address:  If the target server is physical, ilo ip address should be entered, 
