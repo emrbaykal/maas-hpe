@@ -160,11 +160,29 @@ The following system requirements are needed in order for the written codes to w
          - If the server is registered to maas, the status of the server is checked.
          - If the server is registered to maas and its state is Deployed main plays will not be run for that server.
       - If the target server is HPE proliant Gen10 server, necessary configurations for bios and local disks are made.
+        ```yaml
+        anssible-playbook site.yml --tags role::maas-configure-physical-server
+        ```
       - Ansible registers the target server to the maas server, then the commissioning process is started.
+        ```yaml
+        anssible-playbook site.yml --tags role::maas-add-device
+        ```
       - Network configuration is done  with the information filled in the csv file of the target server.
+        ```yaml
+        anssible-playbook site.yml --tags role::maas-configure-net-int
+        ```
       - Storage configuration is done with the information filled in the csv file of the target server.
+        ```yaml
+        anssible-playbook site.yml --tags role::maas-configure-storage-layout
+        ```
       - Operating system deployment perform to the target server.
+        ```yaml
+        anssible-playbook site.yml --tags role::maas-deploy-machine
+        ```
       - If the target server is desired to be set up as vmware host, after the operating system installation, the registration process is performed in the Vmware Virtual Center.
+        ```yaml
+        anssible-playbook site.yml --tags role::maas-add-esxi-vcenter
+        ```
 
 
 Task & Roles
