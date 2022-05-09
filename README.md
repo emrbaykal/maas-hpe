@@ -309,6 +309,7 @@ Task & Roles
 
 ```yaml
 - Logout to MAAS Server via using Maas CLI
+```
 
 License
 -------
