@@ -149,6 +149,7 @@ The following system requirements are needed in order for the written codes to w
        anssible-playbook site.yml
        ```
        
+      - The jobs summarized below are executed.
 
 
 
