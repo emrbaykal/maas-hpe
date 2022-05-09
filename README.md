@@ -77,7 +77,35 @@ The following system requirements are needed in order for the written codes to w
    ```
 
   ## 2- Host-Spesific Variables -- host-vms-csv/hosts.csv
-     - fgf
+     - The host specific information of the target servers to be installed is filled into this csv file. 
+       Then the information in this csv file is read by ansible and host variable files are created.
+       After the target server is customized using the information in the host variable files, then operating system is installed.
+
+     - The fields in the csv file should be filled in the following format.
+
+        ## VMware Host Connection Parameters
+        If there is vmware vcenter in your environment and virtual host deployment will be made on vmware, 
+        the following esxi host whose deployment is planned host connection information must be filled.
+        The following variable esxi username , password  informations.
+        
+        ```yaml
+        # Target Server connection Informations
+        hostname: hostname
+        server_state: If the target server is virtual, the "virtual" parameter should be entered, 
+                      If the target server is physical, the "physical" parameter should be entered. 
+        ilo_address:  If the target server is physical, ilo ip address should be entered, 
+                      If the target server is virtual, keep blank.
+        ilo_username: If the target server is physical, ilo username (admin rights) should be entered, 
+                      If the target server is virtual, keep blank.
+        ilo_password: If the target server is physical, ilo password should be entered, 
+                      If the target server is virtual, keep blank.
+        public_net_interface_ip:
+        public_net_interface_subnet:
+        public_net_interface_mac:
+        deployment_net_interface_mac:
+        domain_name:
+
+        ```
 
 
 Task & Roles
