@@ -149,10 +149,25 @@ The following system requirements are needed in order for the written codes to w
        anssible-playbook site.yml
        ```
        
-      - The jobs summarized below are executed:
+      - The jobs summarized below are executed, also the following steps can be run independently using tags. :
 
          1- The host variables are created by reading the data on the csv file created by the user.
-
+            - if this task is to be run independently
+              ```yaml
+              anssible-playbook site.yml --tags role::host-variable
+              ```
+         2- Login to MAAS Server via using Maas CLI
+         3- Checking whether the server is registered to maas.
+             - If the server is registered to maas, the status of the server is checked.
+             - If the server is registered to maas and its state is Deployed, 
+               main plays will not be run for that server.
+         4- If the target server is HPE proliant Gen10 server, necessary configurations for bios and local disks are made.
+         5- Ansible registers the target server to the maas server, then the commissioning process is started.
+         6- Network configuration is done  with the information filled in the csv file of the target server.
+         7- Storage configuration is done with the information filled in the csv file of the target server.
+         8- Operating system deployment perform to the target server.
+         9- If the target server is desired to be set up as vmware host, after the operating system installation, 
+            the registration process is performed in the Vmware Virtual Center.
 
 
 Task & Roles
@@ -215,7 +230,7 @@ Task & Roles
 ```
 
   - Network configuration of target server. {{ maas-configure-physical-server }}
-    - Network configuration is done in line with the information filled in the csv file of the target server.
+    - Network configuration is done  with the information filled in the csv file of the target server.
 
 ```yaml
 - Checking whether the server is registered to maas.
@@ -227,7 +242,7 @@ Task & Roles
 ```
 
   - Storage configuration of target server. {{ maas-configure-storage-layout }}
-    - Storage configuration is done in line with the information filled in the csv file of the target server.
+    - Storage configuration is done with the information filled in the csv file of the target server.
    
 
 ```yaml
@@ -254,6 +269,17 @@ Task & Roles
   - 10-create-tmp-logical-volume.yml
 ```
 
+   - Operating system deployment perform to the target server. {{ maas-add-esxi-vcenter }}
+     - The installation is started according to the operating system version desired to be installed on the target server.
+
+```yaml
+- Checking whether the server is registered to maas.
+- If the server is registered to maas, the status of the server is checked.
+  - 01-query-machine-deploy.yml
+- Operating System Deployment
+  - 02-deploy-machine.yml
+```
+
   - Vmware Host Vcenter Registration. {{ maas-add-esxi-vcenter }}
     - If the target server is desired to be set up as vmware host, after the operating system installation, 
       the registration process is performed in the Vmware Virtual Center.
@@ -261,8 +287,8 @@ Task & Roles
 ```yaml
 - Add ESXi Host to vCenter.
   - 01-add-host-to-vcenter.yml
-
 ```
+
 - Post Tasks 
    - Post is a conditional execution block that runs after running main plays. 
 
