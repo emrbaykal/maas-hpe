@@ -31,7 +31,8 @@ The following system requirements are needed in order for the written codes to w
 ---------------
 
 - Before start working, infrastructure-specific and host-spesific variables must be filled .
-   ### - Infrastructure-Spesific Variables -- group_vars/all.yml 
+   
+   ## Infrastructure-Spesific Variables -- group_vars/all.yml 
       - The variables defined under this directory contain the connection and protocol information of the systems in the infrastructure.
 
    ## MAAS CLI Connection Parameters
