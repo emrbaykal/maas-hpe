@@ -141,6 +141,17 @@ The following system requirements are needed in order for the written codes to w
 
         ```
 
+- After entering the infrastructure-specific and host-specific variables, you can run the following command to setup the target servers.
+
+  - When the following yml file is execute:
+
+       ```yaml
+       anssible-playbook site.yml
+       ```
+       
+
+
+
 Task & Roles
 ------------
 
