@@ -150,10 +150,10 @@ The following system requirements are needed in order for the written codes to w
        ```
        
   - The jobs summarized below are executed, also the following steps can be run independently using tags:
-
-      1-The host variables are created by reading the data on the csv file created by the user.
-      2-Login to MAAS Server via using Maas CLI.
-         3- Checking whether the server is registered to maas.
+ 
+      - The host variables are created by reading the data on the csv file created by the user.
+      - Login to MAAS Server via using Maas CLI.
+      - Checking whether the server is registered to maas.
              - If the server is registered to maas, the status of the server is checked.
              - If the server is registered to maas and its state is Deployed
                main plays will not be run for that server.
