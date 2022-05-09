@@ -90,7 +90,7 @@ The following system requirements are needed in order for the written codes to w
 
         ## Target Server connection Informations
         ```yaml
-        hostname: Target Serfver hostname.
+        hostname: Target Server hostname.
         server_state: If the target server is virtual, the "virtual" parameter should be entered, 
                       If the target server is physical, the "physical" parameter should be entered. 
         ilo_address:  If the target server is physical, ilo ip address should be entered, 
@@ -99,11 +99,12 @@ The following system requirements are needed in order for the written codes to w
                       If the target server is virtual, keep blank.
         ilo_password: If the target server is physical, ilo password should be entered, 
                       If the target server is virtual, keep blank.
-        public_net_interface_ip:
-        public_net_interface_subnet:
-        public_net_interface_mac:
-        deployment_net_interface_mac:
-        domain_name:
+        public_net_interface_ip:      Target Server public network interface ipaddress.
+        public_net_interface_subnet:  Target Server public network interface subnet.
+        public_net_interface_mac:     Target Server public network interface mac address.
+        deployment_net_interface_mac: Target Server deployment network interface mac address.
+                                      Maas will use this mac address during commissioning state.
+        domain_name:  Target Server domain name.
 
         ```
 
