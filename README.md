@@ -154,8 +154,8 @@ The following system requirements are needed in order for the written codes to w
       - The host variables are created by reading the data on the csv file created by the user.
       - Login to MAAS Server via using Maas CLI.
       - Checking whether the server is registered to maas.
-             - If the server is registered to maas, the status of the server is checked.
-             - If the server is registered to maas and its state is Deployed main plays will not be run for that server.
+         - If the server is registered to maas, the status of the server is checked.
+         - If the server is registered to maas and its state is Deployed main plays will not be run for that server.
       - If the target server is HPE proliant Gen10 server, necessary configurations for bios and local disks are made.
       - Ansible registers the target server to the maas server, then the commissioning process is started.
       - Network configuration is done  with the information filled in the csv file of the target server.
