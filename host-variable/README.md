@@ -30,9 +30,11 @@ Including an example of how to use your role (for instance, with variables passe
 License
 -------
 
-BSD
+GPLv3 or Apache License 2.0, check LICENSE file for more information
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+WARNING: Despite the modules are used by the Author regularly they are tested only manually
+
+To get in touch with author you can use email emrebaykal@gmail.com or create a issue on github when requesting some feature.
