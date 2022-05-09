@@ -83,12 +83,7 @@ The following system requirements are needed in order for the written codes to w
 
      - The fields in the csv file should be filled in the following format.
 
-        ## VMware Host Connection Parameters
-        If there is vmware vcenter in your environment and virtual host deployment will be made on vmware, 
-        the following esxi host whose deployment is planned host connection information must be filled.
-        The following variable esxi username , password  informations.
-
-        ## Target Server connection Informations
+        ## Target Server  Informations
         ```yaml
         hostname: Target Server hostname.
         server_state: If the target server is virtual, the "virtual" parameter should be entered, 
@@ -104,10 +99,47 @@ The following system requirements are needed in order for the written codes to w
         public_net_interface_mac:     Target Server public network interface mac address.
         deployment_net_interface_mac: Target Server deployment network interface mac address.
                                       Maas will use this mac address during commissioning state.
-        domain_name:  Target Server domain name.
+        domain_name:             Target Server domain name.
+        maas_zone_name:          Target Server zone information.
+        motherboard_firmware:    If target Server bios firmware type legacy , the "bios" parameter should be entered.
+                                 If target Server bios firmware type efi , the "efi" parameter should be entered.
+        distro:                  If Red Hat Enterprise Linux will be installed on the target server, the "rhel" parameter should be entered.
+                                 If VMware ESXI Host will be installed on the target server, the "vmware" parameter should be entered.
+        distro_version:          If Red Hat Enterprise Linux will be installed on the target server, the "7.5" or "6.9" parameter should be entered.
+                                 If VMware ESXI Host will be installed on the target server, the "7.0" parameter should be entered.
+        server_role:             If a database will be installed on the target server, the "database" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, the "virtualization" parameter should be entered.
+                                 If it is not clear which application will be installed on the target server, keep blank.
+        os_disc_raid:            If the target server is physical, the "RaidX" parameter should be entered.
+                                 If the target server is virtual, keep blank.
+        os_disc_capacity_gb:     If the target server is physical, the "xx" GB parameter should be entered.
+                                 If the target server is virtual, keep blank.
+        boot_partition_size_gb:  If Red Hat Enterprise Linux will be installed on the target server, the "xx" GB parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        boot_partition_fs:       If Red Hat Enterprise Linux will be installed on the target server, the "fat32" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        swap_partition_size_gb:  If Red Hat Enterprise Linux will be installed on the target server, the "xx" GB parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        swap_partition_fs:       If Red Hat Enterprise Linux will be installed on the target server, the "swap" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        root_partition_size_gb:  If Red Hat Enterprise Linux will be installed on the target server, the "xx" GB parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        root_partition_fs:       If Red Hat Enterprise Linux will be installed on the target server, the "ext4" or "xfs" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        var_partition_size_gb:   If Red Hat Enterprise Linux will be installed on the target server, the "xx" GB parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        var_partition_fs:        If Red Hat Enterprise Linux will be installed on the target server, the "ext4" or "xfs" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        home_partition_size_gb:  If Red Hat Enterprise Linux will be installed on the target server, the "xx" GB parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        home_partition_fs:       If Red Hat Enterprise Linux will be installed on the target server, the "ext4" or "xfs" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        tmp_partition_size_gb:   If Red Hat Enterprise Linux will be installed on the target server, the "xx" GB parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
+        tmp_partition_fs:        If Red Hat Enterprise Linux will be installed on the target server, the "ext4" or "xfs" parameter should be entered.
+                                 If a ESXI Host will be installed on the target server, keep blank.
 
         ```
-
 
 Task & Roles
 ------------
