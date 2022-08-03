@@ -10,15 +10,16 @@
 
 
     - set_fact:
-        int_id: "{{ host_network_interface.stdout|from_json|json_query(query) }}"
-      when: machine_exists|bool == true and machine_state  == "Ready"
+        int1_id: "{{ host_network_interface.stdout|from_json|json_query(query) }}"
+      when: machine_exists|bool == true and machine_state  == "Ready" 
       vars:
-        query: "[? mac_address== '{{ pub_net_mac_address }}' ].id"
-        
+        query: "[? mac_address== '{{ pub_net1_mac_address }}' ].id"
 
-    - name: Assign Public IP To Public Network Interface
-      command: "maas admin interface link-subnet {{ host_system_id }} {{ int_id[0] }} mode=static subnet={{ subnet }} ip_address={{ pub_net_ip }} force=true"
-      when: machine_exists|bool == true and machine_state  == "Ready"
+
+    - name: Assign Public IP To Public Network Interface I
+      command: "maas admin interface link-subnet {{ host_system_id }} {{ int1_id[0] }} mode=static subnet={{ subnet }} ip_address={{ pub_net_ip }} force=true"
+      when: machine_exists|bool == true and machine_state  == "Ready" 
       vars:
-        query: "[0].status_name"
+       query: "[0].status_name"
       changed_when: false
+

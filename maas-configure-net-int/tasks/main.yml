@@ -12,3 +12,15 @@
   tags:
     - role::maas-configure-net-int
     - role::maas-configure-net-int::conf-public-interface
+  when:
+    - pub_net1_mac_address != None
+    - pub_net2_mac_address == None
+    
+- import_tasks: 03-conf-public-interface-bond.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  tags:
+    - role::maas-configure-net-int
+    - role::maas-configure-net-int::conf-public-interface-bond
+  when:
+    - pub_net1_mac_address != None
+    - pub_net2_mac_address != None

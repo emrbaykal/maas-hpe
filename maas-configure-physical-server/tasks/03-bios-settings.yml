@@ -28,23 +28,10 @@
     status_code: 200
   delegate_to: localhost
 
-- name: Wait for Server Power State InPostDiscoveryComplete
-  uri:
-    url: "https://{{ ilo_address }}/redfish/v1/systems/1"
-    method: GET
-    return_content: yes
-    body: ""
-    body_format: json
-    validate_certs: no
-    user: "{{ ilo_username }}"
-    password: "{{ ilo_password }}"
-    force_basic_auth: yes
-    status_code: 200
+- name: Sleep for 180 seconds and continue with play
+  wait_for:
+    timeout: 180
   delegate_to: localhost
-  register: poststate
-  until: poststate.json.Oem.Hpe.PostState == "InPostDiscoveryComplete"
-  retries: 20
-  delay: 15
 
 - name: ILO REST POST EFI BIOS CONFIG FOR VMware
   uri:
@@ -176,20 +163,7 @@
     status_code: 200
   delegate_to: localhost
 
-- name: Wait for Server Power State InPostDiscoveryComplete
-  uri:
-    url: "https://{{ ilo_address }}/redfish/v1/systems/1"
-    method: GET
-    return_content: yes
-    body: ""
-    body_format: json
-    validate_certs: no
-    user: "{{ ilo_username }}"
-    password: "{{ ilo_password }}"
-    force_basic_auth: yes
-    status_code: 200
+- name: Sleep for 180 seconds and continue with play
+  wait_for:
+    timeout: 180
   delegate_to: localhost
-  register: poststate
-  until: poststate.json.Oem.Hpe.PostState == "InPostDiscoveryComplete"
-  retries: 20
-  delay: 15

@@ -7,12 +7,19 @@
   domain: {{ item.value.domain_name }}
   # Zone
   zone: {{ item.value.maas_zone_name }}
+  # Public Fabric Name
+  public_fabric_name: {{ item.value.ublic_fabric_name }}
   # Public Network Subnet:
   subnet: {{ item.value.public_net_interface_subnet }}
   # Public Network IP Address
   pub_net_ip: {{ item.value.public_net_interface_ip }}
-  # Public Network MAC Address
-  pub_net_mac_address: {{ item.value.public_net_interface_mac }}
+  # Public Network I MAC Address
+  pub_net1_mac_address: {{ item.value.public_net_interface1_mac }}
+  # Public Network II MAC Address
+  pub_net2_mac_address: {{ item.value.public_net_interface2_mac }}
+  # Bond Mode
+  bond_mode: {{ item.valuebond_mode }}
+
 
   ## Destination Server Storage Config (Size GB)
   boot_partition_size: {{ item.value.boot_partition_size_gb }}

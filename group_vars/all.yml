@@ -1,25 +1,25 @@
 ---
 ansible_connection: ssh
 ansible_user: hpe
-ansible_ssh_pass: xxxxxx
+ansible_ssh_pass: HP1nv3nt
 
 # maas user
 maas_user: admin
 # maas api url
-maas_url: http://00:00:00:00:5240/MAAS
+maas_url: http://10.254.254.50:5240/MAAS
 # maas API Key
-maas_apikey: admin-api-key-sample
+maas_apikey: tPjCZELD2ahM4EuvKL:CyGp9eFYKpUMdehtvJ:cfCYAC63gQquapmRgaqSUVHuyp8yqrK4
 # maas cli delegation server
-maas_cli_srv: maas-cli-server
-maas_cli_srv_ip: 00:00:00:00
+maas_cli_srv: lxmaas1
+maas_cli_srv_ip: 10.254.254.50
 
 # Vmware Virtual Center Info
-vcenter_hostname: 00:00:00:00
+vcenter_hostname: 10.254.254.6
 vcenter_username: administrator@vsphere.local
-vcenter_password: xxxxxxx
-datacenter_name: VMware-Datacenter
+vcenter_password: HPE!nv3nt
+datacenter_name: HPETR
 
 
 # Planing to Deploy ESXI Host username & password Informations
 esxi_username: root
-esxi_password: xxxxx
+esxi_password: HP1nv3nt
