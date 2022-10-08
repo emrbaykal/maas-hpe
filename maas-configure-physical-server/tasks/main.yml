@@ -1,0 +1,18 @@
+---
+# tasks file for maas-configure-physical-server
+
+- import_tasks: 01-power-state.yml
+  tags:
+    - role::maas-configure-physical-server
+    - role::maas-configure-physical-server::power-state
+
+- import_tasks: 02-logical-drives.yml
+  tags:
+    - role::maas-configure-physical-server
+    - role::maas-configure-physical-server::logical-drives
+
+- import_tasks: 03-bios-settings.yml
+  tags:
+    - role::maas-configure-physical-server
+    - role::maas-configure-physical-server::bios-settings
+

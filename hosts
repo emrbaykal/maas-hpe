@@ -1,0 +1,10 @@
+# This file was created by Ansible
+[maas]
+maas-cli-server ansible_host=00:00:00:00
+
+[guest]
+gust1 ansible_host=00.00.00.00
+guest2 ansible_host=00.00.00.00
+guest3 ansible_host=00.00.00.00
+guest4 ansible_host=00.00.00.00
+guest5 ansible_host=00.00.00.00

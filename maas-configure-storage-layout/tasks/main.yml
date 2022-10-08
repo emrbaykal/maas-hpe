@@ -1,0 +1,82 @@
+---
+# tasks file for maas-configure-storage-layout
+
+- import_tasks: 01-query-machine-storage.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::query-machine-storage
+
+- import_tasks: 02-clean-storage-layout.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::clean-storage-layout
+
+- import_tasks: 03-set-vmfs-storage-layout.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - distro == 'vmware'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::set-vmfs-storage-layout
+
+- import_tasks: 04-create-boot-partition.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-boot-partition
+
+- import_tasks: 05-create-volume-group.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-volume-group
+
+- import_tasks: 06-create-swap-logical-volume.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - swap_partition_size is defined
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-swap-logical-volume.
+
+- import_tasks: 07-create-root-logical-volume.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-root-logical-volume
+
+- import_tasks: 08-create-var-logical-volume.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - var_partition_size is defined
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-var-logical-volume
+
+- import_tasks: 09-create-home-logical-volume.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - home_partition_size is defined
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-home-logical-volume
+
+- import_tasks: 10-create-tmp-logical-volume.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - tmp_partition_size is defined
+    - distro == 'rhel'
+  tags:
+    - role::maas-configure-storage-layout
+    - role::maas-configure-storage-layout::create-tmp-logical-volume

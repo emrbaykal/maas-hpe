@@ -1,0 +1,22 @@
+---
+
+    - name: Create /tmp Logical Volumes
+      command: "maas admin volume-group create-logical-volume {{ host_system_id }} {{ lvm_volume_group_id }} name=lv_tmp size={{ tmp_partition_size }}G"
+      changed_when: false
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      register: tmp_logical_volume
+
+    - set_fact:
+        tmp_logical_volume_id: "{{ tmp_logical_volume.stdout|from_json|json_query('id') }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+
+    - name: Format /tmp Filesystem
+      command: "maas admin block-device format {{ host_system_id }} {{ tmp_logical_volume_id }} fstype={{ tmp_partition_format }}"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      changed_when: false
+
+    
+    - name: Mount /tmp Filesystem
+      command: "maas admin block-device mount {{ host_system_id }} {{ tmp_logical_volume_id }} mount_point=/tmp"
+      when: machine_exists|bool == true and machine_state  == "Ready"
+      changed_when: false

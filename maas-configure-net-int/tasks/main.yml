@@ -1,0 +1,14 @@
+---
+# tasks file for maas-configure-net-int
+
+- import_tasks: 01-query-machine-id-net.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  tags:
+    - role::maas-configure-net-int
+    - role::maas-configure-net-int::query-machine-net
+
+- import_tasks: 02-conf-public-interface.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  tags:
+    - role::maas-configure-net-int
+    - role::maas-configure-net-int::conf-public-interface

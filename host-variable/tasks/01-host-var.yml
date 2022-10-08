@@ -1,0 +1,21 @@
+---
+
+    - read_csv:
+        path: host-vms-csv/hosts.csv
+        key: hostname
+      register: vms
+
+    - debug:
+        msg: "{{ item.key }}:
+              {{ item.value.hostname }},
+              {{ item.value.public_net_interface_ip }}"
+      loop: "{{ vms.dict|dict2items }}"
+
+
+    - name: Deploy User Variable File
+      template:
+         src: hosts-vars.j2
+         dest: "host_vars/{{ item.value.hostname }}.yml"
+      loop: "{{ vms.dict|dict2items }}"
+
+

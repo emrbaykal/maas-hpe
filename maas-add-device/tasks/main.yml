@@ -1,0 +1,26 @@
+---
+# tasks file for maas-add-device
+
+- import_tasks: 01-query-vm.yml
+  delegate_to: localhost
+  when: 
+    - server_state == 'virtual'
+  tags:
+    - role::maas-add-device
+    - role::maas-add-device::query-vm
+
+- import_tasks: 02-add-virtual-device.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - server_state == 'virtual'
+  tags:
+    - role::maas-add-device
+    - role::maas-add-device::add-virtual-device
+
+- import_tasks: 03-add-physical-device.yml
+  delegate_to: "{{ maas_cli_srv }}"
+  when: 
+    - server_state == 'physical'
+  tags:
+    - role::maas-add-device
+    - role::maas-add-device::add-physical-device

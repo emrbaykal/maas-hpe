@@ -1,0 +1,8 @@
+---
+# tasks file for maas-add-esxi-vcenter
+
+  - import_tasks: 01-add-host-to-vcenter.yml
+    delegate_to: localhost
+    tags:
+      - role::maas-add-esxi-vcenter
+      - role::maas-add-esxi-vcenter::add-host-to-vcenter

@@ -1,0 +1,195 @@
+# Configure Server BIOS
+
+- name: ILO REST POST RESET ALL BIOS CONFIG
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: PATCH
+    return_content: yes
+    body: "{\"Attributes\": {\"RestoreManufacturingDefaults\": \"Yes\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+
+- name: ILO REST POST Reboot Server
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset"
+    method: POST
+    return_content: yes
+    body: "{\"ResetType\": \"ForceRestart\"}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+
+- name: Wait for Server Power State InPostDiscoveryComplete
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/systems/1"
+    method: GET
+    return_content: yes
+    body: ""
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+  register: poststate
+  until: poststate.json.Oem.Hpe.PostState == "InPostDiscoveryComplete"
+  retries: 20
+  delay: 15
+
+- name: ILO REST POST EFI BIOS CONFIG FOR VMware
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: POST
+    return_content: yes
+    body: "{\"Attributes\": {\"WorkloadProfile\": \"Virtualization-MaxPerformance\",\"AsrStatus\": \"Disabled\" ,\"BootMode\": \"Uefi\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: 
+    - motherboard_firmware == 'efi'
+    - server_role == 'virtualization'
+  delegate_to: localhost
+
+- name: ILO REST POST LEGACY BIOS CONFIG FOR VMware
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: POST
+    return_content: yes
+    body: "{\"Attributes\": {\"WorkloadProfile\": \"Virtualization-MaxPerformance\" ,\"AsrStatus\": \"Disabled\" ,\"BootMode\": \"LegacyBios\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: 
+    - motherboard_firmware == 'bios'
+    - server_role == 'virtualization'
+  delegate_to: localhost
+
+- name: ILO REST POST EFI BIOS CONFIG FOR Oracle Database
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: POST
+    return_content: yes
+    body: "{\"Attributes\": {\"WorkloadProfile\": \"TransactionalApplicationProcessing\" ,\"BootMode\": \"Uefi\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: 
+    - motherboard_firmware == 'efi'
+    - server_role == 'database'
+  delegate_to: localhost
+
+- name: ILO REST POST LEGACY BIOS CONFIG FOR Oracle Database
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: POST
+    return_content: yes
+    body: "{\"Attributes\": {\"WorkloadProfile\": \"TransactionalApplicationProcessing\" ,\"BootMode\": \"LegacyBios\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: 
+    - motherboard_firmware == 'bios'
+    - server_role == 'database'
+  delegate_to: localhost
+
+- name: ILO REST POST EFI BIOS CONFIG FOR UNDEFINED SYSTEMS
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: POST
+    return_content: yes
+    body: "{\"Attributes\": {\"WorkloadProfile\": \"GeneralPowerEfficientCompute\" ,\"BootMode\": \"Uefi\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: 
+    - motherboard_firmware == 'efi'
+  delegate_to: localhost
+
+- name: ILO REST POST LEGACY BIOS CONFIG FOR UNDEFINED SYSTEMS
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/bios/settings/"
+    method: POST
+    return_content: yes
+    body: "{\"Attributes\": {\"WorkloadProfile\": \"GeneralPowerEfficientCompute\" ,\"BootMode\": \"LegacyBios\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: 
+    - motherboard_firmware == 'bios'
+  delegate_to: localhost
+
+- name: ILO REST POST DISABLE EFI SECURE BOOT
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/SecureBoot/"
+    method: PATCH
+    return_content: yes
+    body: "{\"Attributes\": {\"SecureBootEnable\": \"false\" }}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  when: motherboard_firmware == 'efi'
+  delegate_to: localhost
+
+
+- name: ILO REST POST Rebbot Server
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/Systems/1/Actions/ComputerSystem.Reset"
+    method: POST
+    return_content: yes
+    body: "{\"ResetType\": \"ForceRestart\"}"
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+
+- name: Wait for Server Power State InPostDiscoveryComplete
+  uri:
+    url: "https://{{ ilo_address }}/redfish/v1/systems/1"
+    method: GET
+    return_content: yes
+    body: ""
+    body_format: json
+    validate_certs: no
+    user: "{{ ilo_username }}"
+    password: "{{ ilo_password }}"
+    force_basic_auth: yes
+    status_code: 200
+  delegate_to: localhost
+  register: poststate
+  until: poststate.json.Oem.Hpe.PostState == "InPostDiscoveryComplete"
+  retries: 20
+  delay: 15
